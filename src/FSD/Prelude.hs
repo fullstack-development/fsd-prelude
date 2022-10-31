@@ -106,7 +106,14 @@ module FSD.Prelude
     , (Control.Lens..~)
 
     , Data.Aeson.FromJSON
+    , Data.Aeson.Options (..)
     , Data.Aeson.ToJSON
+    , Data.Aeson.SumEncoding (..)
+    , Data.Aeson.defaultOptions
+
+    , Data.Aeson.TH.deriveJSON
+    , Data.Aeson.TH.deriveFromJSON
+    , Data.Aeson.TH.deriveToJSON
 
     , Data.ByteString.ByteString
 
@@ -182,6 +189,7 @@ import qualified Control.Monad.IO.Class
 import qualified Control.Monad.Trans.Class
 import qualified Control.Lens
 import qualified Data.Aeson
+import qualified Data.Aeson.TH
 import qualified Data.ByteString
 import qualified Data.Foldable
 import qualified Data.Function
