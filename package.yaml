@@ -1,0 +1,34 @@
+name: fsd-prelude
+version: 0.1.0.0
+author: Evgeny Osipenko (evgeny.osipenko@metalamp.io)
+maintainer: Evgeny Osipenko (evgeny.osipenko@metalamp.io)
+
+ghc-options:
+- "-Wall"
+
+dependencies:
+- aeson
+- ansi-terminal
+- base
+- base16
+- base64
+- bytestring
+- containers
+- exceptions
+- generic-lens
+- lens
+- memory
+- mtl
+- pretty-show
+- safe-exceptions
+- template-haskell
+- text
+- time
+- transformers
+- vector
+- yaml
+
+library:
+  source-dirs: src
+  exposed-modules:
+  - FSD.Prelude

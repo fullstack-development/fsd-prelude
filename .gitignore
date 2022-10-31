@@ -1,0 +1,11 @@
+/.direnv/
+/result
+/dist-newstyle/
+/config.yaml
+/db/
+/static/config.yaml
+/walletdb/
+/stake-pools.sqlite
+/static/blockfrost.key
+/logs/
+/.stack-work

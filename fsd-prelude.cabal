@@ -1,0 +1,45 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           fsd-prelude
+version:        0.1.0.0
+author:         Evgeny Osipenko (evgeny.osipenko@metalamp.io)
+maintainer:     Evgeny Osipenko (evgeny.osipenko@metalamp.io)
+build-type:     Simple
+
+library
+  exposed-modules:
+      FSD.Prelude
+  other-modules:
+      FSD.Prelude.Base16
+      FSD.Prelude.Base64
+      FSD.Prelude.Ext
+      Paths_fsd_prelude
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      aeson
+    , ansi-terminal
+    , base
+    , base16
+    , base64
+    , bytestring
+    , containers
+    , exceptions
+    , generic-lens
+    , lens
+    , memory
+    , mtl
+    , pretty-show
+    , safe-exceptions
+    , template-haskell
+    , text
+    , time
+    , transformers
+    , vector
+    , yaml
+  default-language: Haskell2010
