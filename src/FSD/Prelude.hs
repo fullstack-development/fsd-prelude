@@ -106,9 +106,7 @@ module FSD.Prelude
     , (Control.Lens..~)
 
     , Data.Aeson.FromJSON
-    , Data.Aeson.Options (..)
     , Data.Aeson.ToJSON
-    , Data.Aeson.SumEncoding (..)
     , Data.Aeson.defaultOptions
 
     , Data.Aeson.TH.deriveJSON
