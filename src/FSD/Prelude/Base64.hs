@@ -32,31 +32,31 @@ decodeBase64 = BS.Base64.decodeBase64Unpadded . Text.Encoding.encodeUtf8
 type Base64 = Base64Tagged "Base64"
 
 newtype Base64Tagged (s :: GHC.TypeLits.Symbol)
-    = Base64Tagged
+    = Base64
         { base64Bytes :: BS.ByteString }
     deriving (GHC.Generics.Generic)
     deriving newtype
         (Eq, Ord, Semigroup, Monoid, BA.ByteArray, BA.ByteArrayAccess)
 
 instance (GHC.TypeLits.KnownSymbol s) => Show (Base64Tagged s) where
-    showsPrec d (Base64Tagged bs) =
+    showsPrec d (Base64 bs) =
         showParen (d > 0) $
             shows (BS.Base64.encodeBase64Unpadded' bs) .
             showString (" :: " <> GHC.TypeLits.symbolVal (Proxy.Proxy @s))
 
 instance String.IsString (Base64Tagged s) where
     fromString str =
-        Base64Tagged (BS.Base64.decodeBase64Lenient (String.fromString str))
+        Base64 (BS.Base64.decodeBase64Lenient (String.fromString str))
 
 instance Aeson.ToJSON (Base64Tagged s) where
-    toJSON (Base64Tagged bs) =
+    toJSON (Base64 bs) =
         Aeson.String (BS.Base64.encodeBase64Unpadded bs)
-    toEncoding (Base64Tagged bs) =
+    toEncoding (Base64 bs) =
         Aeson.Encoding.text (BS.Base64.encodeBase64Unpadded bs)
 
 instance Aeson.FromJSON (Base64Tagged s) where
     parseJSON (Aeson.String text) =
         case BS.Base64.decodeBase64Unpadded (Text.Encoding.encodeUtf8 text) of
             Left err -> fail (Text.unpack err)
-            Right bs -> pure (Base64Tagged bs)
+            Right bs -> pure (Base64 bs)
     parseJSON _ = fail "Base64-encoded bytestring expected"

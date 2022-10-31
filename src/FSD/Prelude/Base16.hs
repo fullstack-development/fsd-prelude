@@ -32,31 +32,31 @@ decodeBase16 = BS.Base16.decodeBase16 . Text.Encoding.encodeUtf8
 type Base16 = Base16Tagged "Base16"
 
 newtype Base16Tagged (s :: GHC.TypeLits.Symbol)
-    = Base16Tagged
+    = Base16
         { base16Bytes :: BS.ByteString }
     deriving (GHC.Generics.Generic)
     deriving newtype
         (Eq, Ord, Semigroup, Monoid, BA.ByteArray, BA.ByteArrayAccess)
 
 instance (GHC.TypeLits.KnownSymbol s) => Show (Base16Tagged s) where
-    showsPrec d (Base16Tagged bs) =
+    showsPrec d (Base16 bs) =
         showParen (d > 0) $
             shows (BS.Base16.encodeBase16' bs) .
             showString (" :: " <> GHC.TypeLits.symbolVal (Proxy.Proxy @s))
 
 instance String.IsString (Base16Tagged s) where
     fromString str =
-        Base16Tagged (BS.Base16.decodeBase16Lenient (String.fromString str))
+        Base16 (BS.Base16.decodeBase16Lenient (String.fromString str))
 
 instance Aeson.ToJSON (Base16Tagged s) where
-    toJSON (Base16Tagged bs) =
+    toJSON (Base16 bs) =
         Aeson.String (BS.Base16.encodeBase16 bs)
-    toEncoding (Base16Tagged bs) =
+    toEncoding (Base16 bs) =
         Aeson.Encoding.text (BS.Base16.encodeBase16 bs)
 
 instance Aeson.FromJSON (Base16Tagged s) where
     parseJSON (Aeson.String text) =
         case BS.Base16.decodeBase16 (Text.Encoding.encodeUtf8 text) of
             Left err -> fail (Text.unpack err)
-            Right bs -> pure (Base16Tagged bs)
+            Right bs -> pure (Base16 bs)
     parseJSON _ = fail "Base16-encoded bytestring expected"
