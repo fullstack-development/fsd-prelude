@@ -1,5 +1,5 @@
 {-# LANGUAGE NoImplicitPrelude #-}
-{-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE PatternSynonyms #-}
 
 module FSD.Prelude
     ( Prelude.Applicative (..)
@@ -147,12 +147,12 @@ module FSD.Prelude
     , GHC.Generics.Generic
 
     , FSD.Prelude.Base16.Base16
-    , FSD.Prelude.Base16.Base16Tagged (..)
+    , FSD.Prelude.Base16.Base16Tagged (.., Base16)
     , FSD.Prelude.Base16.encodeBase16
     , FSD.Prelude.Base16.decodeBase16
 
     , FSD.Prelude.Base64.Base64
-    , FSD.Prelude.Base64.Base64Tagged (..)
+    , FSD.Prelude.Base64.Base64Tagged (.., Base64)
     , FSD.Prelude.Base64.encodeBase64
     , FSD.Prelude.Base64.decodeBase64
 
