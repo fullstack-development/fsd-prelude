@@ -34,6 +34,7 @@ type Base16 = Base16Tagged "Base16"
 
 pattern Base16 :: BS.ByteString -> Base16
 pattern Base16 x = Base16Tagged x
+{-# COMPLETE Base16 #-}
 
 newtype Base16Tagged (s :: GHC.TypeLits.Symbol)
     = Base16Tagged

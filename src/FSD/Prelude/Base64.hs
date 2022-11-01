@@ -34,6 +34,7 @@ type Base64 = Base64Tagged "Base64"
 
 pattern Base64 :: BS.ByteString -> Base64
 pattern Base64 x = Base64Tagged x
+{-# COMPLETE Base64 #-}
 
 newtype Base64Tagged (s :: GHC.TypeLits.Symbol)
     = Base64Tagged
