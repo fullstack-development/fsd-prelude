@@ -96,6 +96,7 @@ module FSD.Prelude
     , Control.Monad.State.MonadState (..)
     , Control.Monad.State.StateT (..)
     , Control.Monad.State.evalStateT
+    , Control.Monad.State.execStateT
     , Control.Monad.State.mapStateT
 
     , Control.Monad.IO.Class.MonadIO (..)
