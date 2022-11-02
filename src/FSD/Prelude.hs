@@ -162,6 +162,7 @@ module FSD.Prelude
     , FSD.Prelude.Ext.failUndefined
     , FSD.Prelude.Ext.lowerInit
     , FSD.Prelude.Ext.nominalDiffTimeThreadDelay
+    , FSD.Prelude.Ext.onErrorObserving
     , FSD.Prelude.Ext.packText
     , FSD.Prelude.Ext.prettyText
     , FSD.Prelude.Ext.showText

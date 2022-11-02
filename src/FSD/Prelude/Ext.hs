@@ -8,6 +8,7 @@ import Prelude hiding (undefined)
 import qualified Prelude
 import qualified Control.Concurrent
 import qualified Control.Exception
+import qualified Control.Exception.Safe
 import qualified Control.Monad.Catch
 import qualified Control.Monad.Reader
 import qualified Control.Monad.State
@@ -24,6 +25,7 @@ import qualified Data.Yaml.Pretty
 import qualified GHC.Stack
 import qualified Language.Haskell.TH
 import qualified System.Console.ANSI
+import qualified System.IO.Error
 import qualified Text.Show.Pretty
 
 assertM :: Applicative f => Bool -> f ()
@@ -70,6 +72,35 @@ nominalDiffTimeThreadDelay ndt = do
         | otherwise = do
             Control.Concurrent.threadDelay (fromInteger msLeft)
 
+{-| Run an action if an error is thrown in the main action, allowing it to
+    observe the error thrown. This works similarly to
+    `Control.Monad.Catch.onError`, but also allows to observe the exception
+    object that was thrown (for example, to write in in a log).
+
+    If the main action makes an early exit without an exception
+    (such as by returning @`Control.Monad.Trans.MaybeT` (`pure` `Nothing`)@),
+    we substitute @`System.IO.Error.userError` "aborted"@. -}
+onErrorObserving ::
+    (Control.Monad.Catch.MonadMask m) =>
+    m a ->
+    (Control.Monad.Catch.SomeException -> m b) ->
+    m a
+onErrorObserving act handler =
+    fmap fst $ Control.Monad.Catch.generalBracket
+        (pure ())
+        (\() exitCase -> case exitCase of
+            Control.Monad.Catch.ExitCaseSuccess _ ->
+                pure ()
+            Control.Monad.Catch.ExitCaseException ex ->
+                handler ex >> pure ()
+            Control.Monad.Catch.ExitCaseAbort -> do
+                handler aborted >> pure ()
+        )
+        (\() -> act)
+  where
+    aborted = Control.Exception.toException $
+        System.IO.Error.userError "aborted"
+
 packText :: String -> Data.Text.Text
 packText = Data.Text.pack
 
@@ -99,7 +130,7 @@ try ::
     (Control.Exception.Exception e, Control.Monad.Catch.MonadCatch m) =>
     m a ->
     m (Either e a)
-try = Control.Monad.Catch.try
+try = Control.Exception.Safe.try
 
 {-# DEPRECATED undefined "undefined" #-}
 undefined :: forall x. (GHC.Stack.HasCallStack) => x
