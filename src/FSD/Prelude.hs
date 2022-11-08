@@ -120,6 +120,10 @@ module FSD.Prelude
 
     , (Data.Function.&)
 
+    , Data.Functor.Const.Const (..)
+
+    , Data.Functor.Identity.Identity (..)
+
     , Data.Kind.Constraint
     , Data.Kind.Type
 
@@ -193,6 +197,8 @@ import qualified Data.Aeson.TH
 import qualified Data.ByteString
 import qualified Data.Foldable
 import qualified Data.Function
+import qualified Data.Functor.Const
+import qualified Data.Functor.Identity
 import qualified Data.Kind
 import qualified Data.List.NonEmpty
 import qualified Data.Map
