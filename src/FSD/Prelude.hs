@@ -26,6 +26,7 @@ module FSD.Prelude
     , Prelude.String
     , Prelude.Show (..)
     , (Prelude.$)
+    , (Prelude.$!)
     , (Prelude..)
     , (Prelude.<$>)
     , (Prelude.&&)
@@ -40,6 +41,7 @@ module FSD.Prelude
     , Prelude.maybe
     , Prelude.not
     , Prelude.otherwise
+    , Prelude.seq
     , Prelude.snd
     , Prelude.subtract
 
