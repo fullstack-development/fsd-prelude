@@ -133,6 +133,8 @@ module FSD.Prelude
 
     , Data.Map.Map
 
+    , Data.Proxy.Proxy (..)
+
     , Data.Sequence.Seq
 
     , Data.String.IsString (..)
@@ -204,6 +206,7 @@ import qualified Data.Functor.Identity
 import qualified Data.Kind
 import qualified Data.List.NonEmpty
 import qualified Data.Map
+import qualified Data.Proxy
 import qualified Data.Sequence
 import qualified Data.String
 import qualified Data.Text
