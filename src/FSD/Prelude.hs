@@ -121,6 +121,7 @@ module FSD.Prelude
     , Data.Foldable.Foldable (fold, foldMap, foldl', foldr)
 
     , (Data.Function.&)
+    , Data.Function.const
 
     , Data.Functor.Const.Const (..)
 
