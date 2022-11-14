@@ -78,6 +78,7 @@ module FSD.Prelude
     , Control.Monad.Catch.MonadCatch
     , Control.Monad.Catch.MonadMask (..)
     , Control.Monad.Catch.bracket
+    , Control.Monad.Catch.bracket_
     , Control.Monad.Catch.bracketOnError
     , Control.Monad.Catch.finally
     , Control.Monad.Catch.mask_
