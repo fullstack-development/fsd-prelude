@@ -169,6 +169,7 @@ module FSD.Prelude
     , FSD.Prelude.Ext.assertM
     , FSD.Prelude.Ext.decodeJSON
     , FSD.Prelude.Ext.encodeJSON
+    , FSD.Prelude.Ext.failText
     , FSD.Prelude.Ext.failUndefined
     , FSD.Prelude.Ext.lowerInit
     , FSD.Prelude.Ext.nominalDiffTimeThreadDelay

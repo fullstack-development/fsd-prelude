@@ -45,6 +45,10 @@ encodeJSON ::
 encodeJSON x =
     Data.ByteString.Lazy.toStrict (Data.Aeson.encode x)
 
+failText :: forall x m. (MonadFail m) => Data.Text.Text -> m x
+failText msg =
+    fail $ Data.Text.unpack msg
+
 {-# DEPRECATED failUndefined "failUndefined" #-}
 failUndefined :: forall x m. (GHC.Stack.HasCallStack, MonadFail m) => m x
 failUndefined =
