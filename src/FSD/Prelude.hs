@@ -108,6 +108,7 @@ module FSD.Prelude
 
     , (Control.Lens.^.)
     , (Control.Lens..~)
+    , (Control.Lens.%~)
 
     , Data.Aeson.FromJSON
     , Data.Aeson.ToJSON
